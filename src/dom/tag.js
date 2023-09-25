@@ -1,6 +1,12 @@
 import { element } from "./element.js"
 
 /**
+ * @typedef {Object} CustomElement
+ * @property {function(string, string): (HTMLElement | CustomElement)} $attr
+ * @property {function(...string): (HTMLElement | CustomElement)} $class
+*/
+
+/**
  * 
  * @param  {...(Node | string)} children 
  * @returns {HTMLElement | CustomElement}
@@ -63,7 +69,17 @@ const h6 = (...children) => {
   return element("h6", ...children)
 }
 
+/**
+ * 
+ * @param  {...(Node | string)} children 
+ * @returns {HTMLElement | CustomElement}
+ */
+const p = (...children) => {
+  return element("p", ...children)
+}
+
 export {
   div,
-  h1, h2, h3, h4, h5, h6
+  h1, h2, h3, h4, h5, h6,
+  p,
 }

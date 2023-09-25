@@ -1,7 +1,8 @@
 /**
  * @typedef {Object} CustomElement
  * @property {function(string, string): (HTMLElement | CustomElement)} $attr
- */
+ * @property {function(...string): (HTMLElement | CustomElement)} $class
+*/
 
 /**
  * 
@@ -31,6 +32,14 @@ const element = (name, ...children) => {
       }
     }
   })
+
+  element.$class = function (...list) {
+    list?.length > 0 && list.forEach((val) => {
+      this.classList.add(val)
+    })
+
+    return this
+  }
 
   return element
 }
