@@ -1,14 +1,15 @@
 /**
- * @typedef {Object} CustomElement
- * @property {function(string, string): (HTMLElement | CustomElement)} $attr
- * @property {function(...string): (HTMLElement | CustomElement)} $class
+ * @typedef {Object} SocializeElement
+ * @property {function(string, string): (HTMLElement | SocializeElement)} $attr
+ * @property {function(...string): (HTMLElement | SocializeElement)} $class
+ * @property {function((this: GlobalEventHandlers, ev: Event) => any)): any} $onchange
 */
 
 /**
  * 
  * @param {string} name 
  * @param  {...(Node | string)} children 
- * @returns {HTMLElement | CustomElement}
+ * @returns {HTMLElement | SocializeElement}
  */
 const element = (name, ...children) => {
   const element = document.createElement(name)
@@ -40,6 +41,8 @@ const element = (name, ...children) => {
 
     return this
   }
+
+  element.$onchange = (cb) => element.onchange = cb
 
   return element
 }
